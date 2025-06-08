@@ -5,6 +5,10 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
+        """
+        Find the starting and ending positions of the target value in the array
+        If nums = [5,7,7,8,8,8,10] and target = 8, it should return [3, 5].
+        """
         def find_first(nums, target):
             left, right = 0, len(nums) - 1
             first = -1
@@ -12,7 +16,7 @@ class Solution(object):
                 mid = (left + right) // 2
                 if nums[mid] == target:
                     first = mid
-                    right = mid - 1
+                    right = mid - 1 # Found target, but continue searching left for the first occurrence
                 elif nums[mid] < target:
                     left = mid + 1
                 else:
@@ -26,7 +30,7 @@ class Solution(object):
                 mid = (left + right) // 2
                 if nums[mid] == target:
                     last = mid
-                    left = mid + 1
+                    left = mid + 1 # Found target, but continue searching right for the last occurrence
                 elif nums[mid] < target:
                     left = mid + 1
                 else:
