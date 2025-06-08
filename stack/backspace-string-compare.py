@@ -9,7 +9,7 @@ class Solution(object):
             stack = []
             for char in string:
                 if char == '#':
-                    if stack
+                    if stack:
                         stack.pop()
                 else:
                     stack.append(char)
