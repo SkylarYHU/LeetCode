@@ -4,6 +4,10 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
+        """
+        Time: O(n) – each number is processed once
+        Space: O(n) – for the result array
+        """
         n = len(nums)
         result = [0] * n
         left, right = 0, n - 1
