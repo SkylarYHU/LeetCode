@@ -11,6 +11,9 @@ class Solution(object):
         n = len(nums)
         result = [0] * n
         left, right = 0, n - 1
+        # We cannot determine the position of the smallest squared value at the beginning,
+        # but we can determine the position of the largest one.
+        # Therefore, we fill the result array from the end.
         pos = n - 1
         while left <= right:
             if abs(nums[left]) > abs(nums[right]): # Don't forget abs()
