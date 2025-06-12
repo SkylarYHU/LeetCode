@@ -20,10 +20,13 @@ class Solution(object):
         for _ in range(n):
             fast = fast.next
         
+        # After this loop, slow will be just before the node to remove
         while fast.next:
-            fast = fast.next
-            slow = slow.fast
+            fast = fast.next # fast will reach None
+            slow = slow.next
 
+        # Remove the nth node from the end by skipping it
         slow.next = slow.next.next
 
+        # Return the head of the updated list
         return dummy.next
