@@ -1,20 +1,30 @@
-from operator import add, sub, mul
-
-def div(x, y):
-    # 使用整数除法的向零取整方式
-    return int(x / y) if x * y > 0 else -(abs(x) // abs(y))
-
-class Solution(object):
-    op_map = {'+': add, '-': sub, '*': mul, '/': div}
-    
+class Solution:
     def evalRPN(self, tokens):
+        from operator import add, sub, mul
         stack = []
+
+        # Define operator functions
+        def divide(a, b):
+            # Truncate toward zero manually
+            return int(a / b) if a * b >= 0 else -(-a // b)
+
+        # Map each operator to the corresponding function
+        ops = {
+            '+': add,
+            '-': sub,
+            '*': mul,
+            '/': divide
+        }
+
         for token in tokens:
-            if token not in {'+', '-', '*', '/'}:
-                stack.append(int(token))
+            if token in ops:
+                b = stack.pop()
+                a = stack.pop()
+                result = ops[token](a, b)
+                stack.append(result)
             else:
-                op2 = stack.pop()
-                op1 = stack.pop()
-                stack.append(self.op_map[token](op1, op2))  # 第一个出来的在运算符后面
-        return stack.pop()
+                stack.append(int(token))
+
+        return stack[0]
+
 
